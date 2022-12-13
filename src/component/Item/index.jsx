@@ -37,7 +37,7 @@ export default class Item extends Component {
                 <label>
                     <input
                         type="checkbox"
-                        defaultChecked={isChecked}
+                        checked={isChecked}
                         onChange={this.changeCheck}
                     />
                     <span>{taskName}</span>

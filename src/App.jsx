@@ -41,6 +41,14 @@ export default class App extends Component {
         });
         this.setState({ task: newTask });
     };
+    //删除已完成任务
+    clearCheckTask = () => {
+        const { task } = this.state;
+        const newTask = task.filter((item) => {
+            return item.isChecked !== true;
+        });
+        this.setState({ task: newTask });
+    };
     render() {
         return (
             <div className="todo-container">
@@ -54,6 +62,7 @@ export default class App extends Component {
                     <Foot
                         task={this.state.task}
                         checkAllTask={this.checkAllTask}
+                        clearCheckTask={this.clearCheckTask}
                     ></Foot>
                 </div>
             </div>

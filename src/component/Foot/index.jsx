@@ -6,6 +6,10 @@ export default class Foot extends Component {
         // console.log(event.target.checked);
         this.props.checkAllTask(event.target.checked);
     };
+    //删除已选任务
+    clearCheckTask = () => {
+        this.props.clearCheckTask();
+    };
     render() {
         const { task } = this.props;
         //总任务个数
@@ -20,14 +24,23 @@ export default class Foot extends Component {
                 <label>
                     <input
                         type="checkbox"
-                        checked={totalTask === doneTask ? true : false}
+                        checked={
+                            totalTask === doneTask && totalTask > 0
+                                ? true
+                                : false
+                        }
                         onChange={this.checkAllTask}
                     />
                 </label>
                 <span>
                     <span>已完成{doneTask}</span> / 全部{totalTask}
                 </span>
-                <button className="btn btn-danger">清除已完成任务</button>
+                <button
+                    className="btn btn-danger"
+                    onClick={this.clearCheckTask}
+                >
+                    清除已完成任务
+                </button>
             </div>
         );
     }
