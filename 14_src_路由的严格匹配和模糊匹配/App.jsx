@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Head from "./components/Head";
 import MyNavLink from "./components/MyNavLink";
 import Home from "./pages/Home";
@@ -40,10 +40,13 @@ export default class App extends Component {
                                 >
                                     Home
                                 </NavLink> 
-                                1.一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由
+                                1.默认使用的是模糊匹配（简单记：【输入的路径】必须包含要【匹配的路径】，且顺序要一致）
+			                    2.开启严格匹配：<Route exact={true} path="/about" component={About}/>
+			                    3.严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由
                                 */}
                                 <MyNavLink to="/about">About</MyNavLink>
-                                <MyNavLink to="/laozi/home/b/a">Home</MyNavLink>
+                                <MyNavLink to="/home/b/a">Home</MyNavLink>
+                                {/* <MyNavLink to="/home/b/a">Home</MyNavLink> 此时能够匹配/home，为模糊匹配,Route中加了exact为严格匹配 */}
                             </div>
                         </div>
                         <div className="col-xs-6">
@@ -51,11 +54,15 @@ export default class App extends Component {
                                 <div className="panel-body">
                                     <Switch>
                                         <Route
+                                            exact
                                             path="/about"
                                             component={About}
                                         />
-                                        <Route path="/home" component={Home} />
-                                        <Redirect to="/about" />
+                                        <Route
+                                            exact
+                                            path="/home"
+                                            component={Home}
+                                        />
                                     </Switch>
                                 </div>
                             </div>

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Head from "./components/Head";
 import MyNavLink from "./components/MyNavLink";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Test from "./pages/Test";
 import "./App.css";
 export default class App extends Component {
     render() {
@@ -40,22 +41,31 @@ export default class App extends Component {
                                 >
                                     Home
                                 </NavLink> 
-                                1.一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由
+                                1.public/index.html 中 引入样式时不写 ./ 写 / （常用）
+			                    2.public/index.html 中 引入样式时不写 ./ 写 %PUBLIC_URL% （常用）
+			                    3.使用HashRouter
                                 */}
-                                <MyNavLink to="/about">About</MyNavLink>
-                                <MyNavLink to="/laozi/home/b/a">Home</MyNavLink>
+                                <MyNavLink to="/laozi/about">About</MyNavLink>
+                                <MyNavLink to="/laozi/home">Home</MyNavLink>
                             </div>
                         </div>
                         <div className="col-xs-6">
                             <div className="panel">
                                 <div className="panel-body">
+                                    {/* 若没有Switch,Home组件和Test组件都会被加载，加了Switch内置组件后，只匹配第一个Home组件，提高了路由匹配效率(单一匹配) */}
                                     <Switch>
                                         <Route
                                             path="/about"
                                             component={About}
                                         />
-                                        <Route path="/home" component={Home} />
-                                        <Redirect to="/about" />
+                                        <Route
+                                            path="/laozi/home"
+                                            component={Home}
+                                        />
+                                        <Route
+                                            path="/laozi/home"
+                                            component={Test}
+                                        />
                                     </Switch>
                                 </div>
                             </div>

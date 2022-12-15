@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Head from "./components/Head";
 import MyNavLink from "./components/MyNavLink";
 import Home from "./pages/Home";
@@ -39,24 +39,16 @@ export default class App extends Component {
                                     to="/home"
                                 >
                                     Home
-                                </NavLink> 
-                                1.一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由
-                                */}
+                                </NavLink> */}
                                 <MyNavLink to="/about">About</MyNavLink>
-                                <MyNavLink to="/laozi/home/b/a">Home</MyNavLink>
+                                <MyNavLink to="/home">Home</MyNavLink>
                             </div>
                         </div>
                         <div className="col-xs-6">
                             <div className="panel">
                                 <div className="panel-body">
-                                    <Switch>
-                                        <Route
-                                            path="/about"
-                                            component={About}
-                                        />
-                                        <Route path="/home" component={Home} />
-                                        <Redirect to="/about" />
-                                    </Switch>
+                                    <Route path="/about" component={About} />
+                                    <Route path="/home" component={Home} />
                                 </div>
                             </div>
                         </div>

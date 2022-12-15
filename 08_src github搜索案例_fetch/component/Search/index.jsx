@@ -11,6 +11,8 @@ export default class Search extends Component {
         //loading中
         PubSub.publish("users", { isFirst: false, isLoading: true });
         //发请求获取数据，更新状态信息
+        //#region
+        // aixos发送请求
         // axios.get(`http://localhost:3000/api/search/users2?q=${keyWord}`).then(
         //     (response) => {
         //         console.log("请求成功！");
@@ -25,11 +27,14 @@ export default class Search extends Component {
         //         PubSub.publish("users", { isLoading: false, err: err.message });
         //     }
         // );
+        //#endregion
+        //#region
         //fetch发送请求,--未优化
         // fetch(`http://localhost:3000/api/search/users2?q=${keyWord}`)
         //     .then(
         //         (response) => {
         //             console.log("请求接口成功");
+        //json()为response原型对象上的一个方法，与JSON进行区分
         //             return response.json();
         //         },
         //         (err) => {
@@ -46,6 +51,7 @@ export default class Search extends Component {
         //             console.log("请求数据失败", err.message);
         //         }
         //     );
+        //#endregion
         //fetch发送请求,--优化
         try {
             const response = await fetch(
