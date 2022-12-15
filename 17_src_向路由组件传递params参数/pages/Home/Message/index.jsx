@@ -26,20 +26,17 @@ export default class Message extends Component {
                     return (
                         <li key={messageObj.id}>
                             <Link
-                                to={{
-                                    pathname: "/home/message/detail",
-                                    state: {
-                                        id: messageObj.id,
-                                        title: messageObj.title,
-                                    },
-                                }}
+                                to={`/home/message/detail/${messageObj.id}/${messageObj.title}`}
                             >
                                 {messageObj.title}
                             </Link>
                         </li>
                     );
                 })}
-                <Route path={`/home/message/detail`} component={Detail} />
+                <Route
+                    path={`/home/message/detail/:id/:title`}
+                    component={Detail}
+                />
             </ul>
         );
     }

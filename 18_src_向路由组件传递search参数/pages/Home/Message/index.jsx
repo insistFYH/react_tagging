@@ -26,13 +26,7 @@ export default class Message extends Component {
                     return (
                         <li key={messageObj.id}>
                             <Link
-                                to={{
-                                    pathname: "/home/message/detail",
-                                    state: {
-                                        id: messageObj.id,
-                                        title: messageObj.title,
-                                    },
-                                }}
+                                to={`/home/message/detail?id=${messageObj.id}&title=${messageObj.title}`}
                             >
                                 {messageObj.title}
                             </Link>
